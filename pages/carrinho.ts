@@ -15,7 +15,7 @@ export class CarrinhoPage {
         this.checkoutButton = page.locator('[data-test="checkout"]');
         this.firstNameInput = page.locator('[data-test="firstName"]');
         this.error = page.locator('[data-test="error"]');
-        this.shoppingCartLink = page.locator('[data-test=".shopping_cart_link"]');
+        this.shoppingCartLink = page.locator('[data-test="shopping-cart-link"]');
         this.cardBadge = page.locator('[data-test="shopping-cart-badge"]');
         this.continueButton = page.locator('[data-test="continue"]');
         this.carItems = page.locator('[data-test="inventory-item-name"]');
@@ -57,6 +57,7 @@ export class CarrinhoPage {
         await this.cardBadge.click();
     }
     async goToShoppingCart() {
+        await this.shoppingCartLink.waitFor({ state: 'visible' });
         await this.shoppingCartLink.click();
     }
 }
