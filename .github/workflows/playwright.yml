@@ -20,6 +20,10 @@ jobs:
         run: |
           npm install  # Instala todas as dependências do projeto
 
+      - name: Baixar navegadores do Playwright
+        run: |
+          npx playwright install
+          
       - name: Rodar Playwright Testes
         run: |
           npx playwright test  # Executa os testes Playwright

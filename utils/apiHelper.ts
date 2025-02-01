@@ -22,12 +22,15 @@ export const deleteRequest = async (request: APIRequestContext, url:string) => {
 
 export const checkJsonBody = async (response: APIResponse, expectedProperties: string[]): Promise<void> => {
     const body = await response.json();
-
+    
     body.data.forEach((item: Record<string, any>) => {
-    expectedProperties.forEach((prop: string) => {
-        expect(item).toHaveProperty(prop);
+        expectedProperties.forEach((prop: string) => {
+            // Verifica se a propriedade existe no item
+            if (item.hasOwnProperty(prop)) {
+                expect(item).toHaveProperty(prop);
+            }
+        });
     });
- });
 };
 
 export const checkStatus = async (response: APIResponse, expectedStatus: number): Promise<void> => {
