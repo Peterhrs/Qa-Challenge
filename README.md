@@ -2,11 +2,9 @@
 
 ## Introdução
 
-Este repositório contém dois testes práticos para a vaga de **QA Engineer**. O objetivo é validar suas habilidades de automação de testes com:
+Este repositório contém dois testes automatizados.
 1. **Validação de fluxos de UI** com **Playwright**.
 2. **Interação e validação de APIs** com **Playwright** e **Node.js**.
-
-Você terá até **2 dias** para completar o teste.
 
 ## Requisitos Técnicos
 
@@ -49,13 +47,17 @@ Você terá até **2 dias** para completar o teste.
 │   ├── api/
 │   │   └── reqres.spec.ts       # Testes de API
 │   ├── ui/
-│   │   └── swaglabs.spec.ts      # Testes de UI
+│   │   └── swaglabs.spec.ts     # Testes de UI
+├── pages/
+│   ├── login.ts                 # Página de login
+│   ├── carrinho.ts              # Página do carrinho
+├── utils/
+│   └── utils.ts                 # Funções utilitárias
 ├── playwright.config.ts          # Configuração do Playwright
 ├── package.json
 ├── README.md
-├── tsconfig.json                 # Configuração do TypeScript
+├── tsconfig.json                # Configuração do TypeScript
 └── ...
-```
 
 ## Descrição dos Testes
 
@@ -85,12 +87,6 @@ As credenciais de login são fornecidas abaixo:
    - Após adicionar produtos ao carrinho, tente finalizar a compra sem preencher os dados obrigatórios no checkout (nome, endereço, etc.).
    - Valide se as mensagens de erro são exibidas e se o sistema bloqueia o usuário de finalizar a compra.
 
-### O que será avaliado:
-- Uso correto de seletores de elementos.
-- Automação de cenários de interação de usuário.
-- Tratamento de cenários de erro (ex: interações com elementos que não existem ou estão ocultos).
-- Execução paralela de testes para otimização.
-
 ---
 
 ### Parte 2: Testes de API com Playwright
@@ -115,49 +111,19 @@ Escreva testes para validar as respostas e o comportamento da API.
    - Faça uma requisição `DELETE` para um usuário que não existe (`/api/users/999`) e valide se a resposta correta de erro (404) é retornada.
    - Simule um cenário de falha de rede ou tempo limite na API e verifique se o sistema lida com o erro corretamente.
 
-### O que será avaliado:
-- Compreensão de cenários de sucesso e erro em APIs.
-- Uso de assertions e validações de dados complexos.
-- Manipulação de cenários assíncronos e tempos de resposta.
-- Estruturação de testes para maior clareza e eficiência.
-
 ---
 
 ### Melhorias Técnicas
 
 1. **Relatórios de Testes:**
-   - Inclua um **relatório HTML** ao final da execução dos testes. Configure o Playwright para gerar relatórios com as informações detalhadas sobre os resultados de cada teste.
+   - Um **relatório HTML** ao final da execução dos testes.
 
 2. **Execução Paralela:**
-   - Garanta que os testes de API e UI possam ser executados em paralelo para otimizar o tempo de execução. Utilize a configuração adequada do Playwright para rodar testes simultaneamente.
+   - Os testes de API e UI podem ser executados em paralelo para otimizar o tempo de execução. 
 
 3. **Pipeline de CI/CD:**
-   - Configure uma pipeline de integração contínua usando GitHub Actions (ou outra ferramenta de CI/CD) para garantir que o projeto seja automaticamente testado ao fazer um push no repositório. Isso não é obrigatório, mas será um diferencial.
+   - uma pipeline de integração contínua usando GitHub Actions para garantir que o projeto seja automaticamente testado ao fazer um push no repositório. (não finalizado)
 
 ---
 
-### Exemplo de Execução Paralela
-
-No arquivo `playwright.config.ts`, configure a execução paralela com o seguinte snippet:
-
-```typescript
-export default defineConfig({
-  workers: process.env.CI ? 1 : undefined, // Utilizar um worker em CI, múltiplos localmente
-  retries: process.env.CI ? 2 : 0,         // Retentar em caso de falha em ambiente de CI
-  use: {
-    headless: true,
-    trace: 'on-first-retry',
-  },
-});
-```
-
----
-
-### Instruções de Entrega
-
-- O código deve ser entregue em um repositório Git (GitHub, GitLab ou outro).
-- Inclua um arquivo `README` detalhando como rodar o projeto e qualquer informação relevante.
-- Certifique-se de que todos os testes estejam passando.
-- Se possível, configure uma pipeline de CI/CD para rodar os testes automaticamente ao fazer push no repositório.
-
-Boa sorte! Se tiver dúvidas, entre em contato.
+ Se tiver dúvidas, entre em contato.
