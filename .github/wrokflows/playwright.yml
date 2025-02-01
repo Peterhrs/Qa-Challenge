@@ -1,0 +1,38 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches:
+      - main  # ou o nome da branch principal do seu projeto
+  pull_request:
+    branches:
+      - main  # ou o nome da branch principal do seu projeto
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Ambiente de execução (Ubuntu no caso)
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3  # Faz o checkout do repositório
+
+      - name: Instalar dependências
+        run: |
+          npm install  # Instala todas as dependências do projeto
+
+      - name: Rodar Playwright Testes
+        run: |
+          npx playwright test  # Executa os testes Playwright
+
+      - name: Publicar Relatório HTML
+        if: always()  # Sempre publica, mesmo que os testes falhem
+        run: |
+          # Move o relatório HTML gerado para o diretório correto
+          mkdir -p $GITHUB_WORKSPACE/playwright-report
+          mv playwright-report/* $GITHUB_WORKSPACE/playwright-report/
+
+      - name: Upload Relatório para o GitHub
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: $GITHUB_WORKSPACE/playwright-report/*.html  # Faz o upload apenas do arqui

@@ -8,7 +8,7 @@ export default defineConfig({
     ],
     use: {
         headless: true,
-        trace: 'on',
+        trace: 'on-first-retry',
     },
     projects: [
         {
