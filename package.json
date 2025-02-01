@@ -4,9 +4,9 @@
     "description": "Este repositório contém dois testes práticos para a vaga de **QA Engineer**. O objetivo é validar suas habilidades de automação de testes com:\r 1. **Validação de fluxos de UI** com **Playwright**.\r 2. **Interação e validação de APIs** com **Playwright** e **Node.js**.",
     "main": "index.js",
     "scripts": {
-      "test": "npx playwright test",
-      "test:ui": "npx playwright test tests/ui",
-      "test:api": "npx playwright test tests/api"
+      "test": "npx playwright test --workers 2",
+      "test:ui": "npx playwright test tests/ui --workers 2",
+      "test:api": "npx playwright test tests/api --workers 2"
     },
     "repository": {
       "type": "git",
