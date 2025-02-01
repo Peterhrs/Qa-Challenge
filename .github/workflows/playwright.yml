@@ -28,19 +28,19 @@ jobs:
         run: |
           npx playwright test  # Executa os testes Playwright
 
-- name: Limpar diretório de relatórios antigos
-  run: |
-    rm -rf $GITHUB_WORKSPACE/playwright-report/*  # Limpa os relatórios anteriores
+      - name: Limpar diretório de relatórios antigos
+        run: |
+          rm -rf $GITHUB_WORKSPACE/playwright-report/*  # Limpa os relatórios anteriores
 
-- name: Publicar Relatório HTML
-  if: always()  # Sempre publica, mesmo que os testes falhem
-  run: |
-    # Cria um diretório temporário
-    mkdir -p $GITHUB_WORKSPACE/playwright-temp-report
-    mv playwright-report/* $GITHUB_WORKSPACE/playwright-temp-report/
+      - name: Publicar Relatório HTML
+        run: |
+          # Cria um diretório temporário
+          mkdir -p $GITHUB_WORKSPACE/playwright-temp-report
+          mv playwright-report/* $GITHUB_WORKSPACE/playwright-temp-report/
 
-- name: Upload Relatório para o GitHub
-  uses: actions/upload-artifact@v4
-  with:
-    name: playwright-report
-    path: $GITHUB_WORKSPACE/playwright-temp-report/*.html  # Faz o upload apenas dos relatórios HTML
+      - name: Upload Relatório para o GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: $GITHUB_WORKSPACE/playwright-temp-report/*.html  # Faz o upload apenas do relatório HTML
+
